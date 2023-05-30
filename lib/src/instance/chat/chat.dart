@@ -166,6 +166,7 @@ interface class OpenAIChat implements OpenAIChatBase {
   }) {
     return OpenAINetworkingClient.postStream<OpenAIStreamChatCompletionModel>(
       to: BaseApiUrlBuilder.build(endpoint),
+      appCheckToken:appCheckToken,
       body: {
         "model": model,
         "stream": true,
