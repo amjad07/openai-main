@@ -1,7 +1,7 @@
 class OpenAIApisEndpoints {
   final completion = "/gpt/chat";
   final audio = "/audio";
-  final chat = "/chat/completions";
+  final chat = "/gpt/chat";
   final edits = "/edits";
   final embeddings = "/embeddings";
   final files = "/files";
