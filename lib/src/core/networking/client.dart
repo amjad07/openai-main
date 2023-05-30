@@ -244,6 +244,7 @@ abstract class OpenAINetworkingClient {
 
   static Stream<T> postStream<T>({
     required String to,
+    String? appCheckToken,
     required T Function(Map<String, dynamic>) onSuccess,
     required Map<String, dynamic> body,
     http.Client? client,
@@ -255,8 +256,11 @@ abstract class OpenAINetworkingClient {
 
       final uri = Uri.parse(to);
 
-      final headers = HeadersBuilder.build();
-
+//   final headers = HeadersBuilder.build();
+      Map<String, String> headers = {
+        'Content-Type': 'application/json',
+        'X-Firebase-AppCheck': appCheckToken.toString(),
+      };
       final httpMethod = OpenAIStrings.postMethod;
 
       final request = http.Request(httpMethod, uri);

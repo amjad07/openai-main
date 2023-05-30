@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_openai/dart_openai.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:http/http.dart' as http;
 import 'package:test/test.dart';
 
@@ -100,9 +101,9 @@ void main() async {
       expect(completion.choices.first.text, isNotNull);
       expect(completion.choices.first.text, isA<String?>());
     });
-    test('create with a stream', () {
+    test('create with a stream', () async {
       final Stream<OpenAIStreamCompletionModel> completion =
-          OpenAI.instance.completion.createStream(
+       await    OpenAI.instance.completion.createStream(
         // in case the previous test didn't run, we will use a default model id.
         model: modelExampleId ?? "text-davinci-003",
         prompt: "Dart tests are made to ensure that a function w",
@@ -143,7 +144,9 @@ void main() async {
       );
       expect(chatCompletion.choices.first.message.content, isA<String>());
     });
-    test('create with a stream', () {
+    test('create with a stream', () async {
+      final appCheckToken = await FirebaseAppCheck.instance.getToken();
+
       final chatStream = OpenAI.instance.chat.createStream(
         model: "gpt-3.5-turbo",
         messages: [

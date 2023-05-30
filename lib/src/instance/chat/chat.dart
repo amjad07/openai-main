@@ -151,6 +151,7 @@ interface class OpenAIChat implements OpenAIChatBase {
   @override
   Stream<OpenAIStreamChatCompletionModel> createStream({
     required String model,
+    String? appCheckToken,
     required List<OpenAIChatCompletionChoiceMessageModel> messages,
     double? temperature,
     double? topP,
