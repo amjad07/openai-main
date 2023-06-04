@@ -150,7 +150,7 @@ abstract class OpenAINetworkingClient {
 
     Future<void> close() {
       return Future.wait([
-      //  Future.delayed(Duration.zero, client?.close),
+//  Future.delayed(Duration.zero, client?.close),
         controller.close(),
       ]);
     }
@@ -205,6 +205,7 @@ abstract class OpenAINetworkingClient {
 //final headers = HeadersBuilder.build();
     Map<String, String> headers = {
       'Content-Type': 'application/json',
+      "Accept": "text/event-stream",
       'X-Firebase-AppCheck': appCheckToken.toString(),
     };
     final handledBody = body != null ? jsonEncode(body) : null;
@@ -271,7 +272,7 @@ abstract class OpenAINetworkingClient {
 
       Future<void> close() {
         return Future.wait([
-          //Future.delayed(Duration.zero, client!.close),
+//Future.delayed(Duration.zero, client!.close),
           controller.close(),
         ]);
       }
